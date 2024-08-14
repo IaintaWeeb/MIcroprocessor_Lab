@@ -1,0 +1,346 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    04/08/2023  15:44:11  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\Steven_algo.obj TO .\Objects\Thomas_algo PRINT (.\Listings\
+>> Thomas_algo.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\Steven_algo.obj (STEVEN_ALGO)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CSTPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CSTOPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?UIDIV)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?LMUL)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?ULDIV)
+
+
+LINK MAP OF MODULE:  .\Objects\Thomas_algo (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     003BH     UNIT         ?DT?STEVEN_ALGO
+            DATA    0043H     0005H     UNIT         _DATA_GROUP_
+            IDATA   0048H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0008H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+                    000EH     07F2H                  *** GAP ***
+            CODE    0800H     01BFH     UNIT         ?C?LIB_CODE
+            CODE    09BFH     0152H     UNIT         ?PR?STEVEN_ALGO?STEVEN_ALGO
+            CODE    0B11H     00A6H     UNIT         ?PR?_INT_TO_STRING?STEVEN_ALGO
+            CODE    0BB7H     008CH     UNIT         ?C_C51STARTUP
+            CODE    0C43H     0068H     UNIT         ?PR?MAIN?STEVEN_ALGO
+            CODE    0CABH     0037H     UNIT         ?PR?LCD_INIT?STEVEN_ALGO
+            CODE    0CE2H     0025H     UNIT         ?PR?_LCD_WRITE_STRING?STEVEN_ALGO
+            CODE    0D07H     0024H     UNIT         ?PR?_MSDELAY?STEVEN_ALGO
+            CODE    0D2BH     0024H     UNIT         ?PR?TIMER0_ISR?STEVEN_ALGO
+            CODE    0D4FH     0019H     UNIT         ?C_INITSEG
+            CODE    0D68H     0013H     UNIT         ?CO?STEVEN_ALGO
+            CODE    0D7BH     0012H     UNIT         ?PR?_LCD_CMD?STEVEN_ALGO
+            CODE    0D8DH     0012H     UNIT         ?PR?_LCD_WRITE_CHAR?STEVEN_ALGO
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Thomas_algo (?C_STARTUP)
+
+
+SEGMENT                                     DATA_GROUP 
+  +--> CALLED SEGMENT                     START    LENGTH
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/08/2023  15:44:11  PAGE 2
+
+
+---------------------------------------------------------
+?C_C51STARTUP                             -----    -----
+  +--> ?PR?MAIN?STEVEN_ALGO
+  +--> ?C_INITSEG
+
+?PR?MAIN?STEVEN_ALGO                      -----    -----
+  +--> ?PR?_LCD_CMD?STEVEN_ALGO
+  +--> ?PR?_MSDELAY?STEVEN_ALGO
+  +--> ?CO?STEVEN_ALGO
+  +--> ?PR?_LCD_WRITE_STRING?STEVEN_ALGO
+  +--> ?PR?STEVEN_ALGO?STEVEN_ALGO
+  +--> ?PR?_INT_TO_STRING?STEVEN_ALGO
+
+?PR?_LCD_CMD?STEVEN_ALGO                  -----    -----
+  +--> ?PR?_MSDELAY?STEVEN_ALGO
+
+?PR?_LCD_WRITE_STRING?STEVEN_ALGO         0043H    0003H
+  +--> ?PR?_LCD_WRITE_CHAR?STEVEN_ALGO
+
+?PR?_LCD_WRITE_CHAR?STEVEN_ALGO           -----    -----
+  +--> ?PR?_MSDELAY?STEVEN_ALGO
+
+?PR?_INT_TO_STRING?STEVEN_ALGO            0043H    0005H
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Thomas_algo (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:0BB7H         SEGMENT       ?C_C51STARTUP
+  I:0048H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0BBAH         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:0BB7H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/08/2023  15:44:11  PAGE 3
+
+
+  C:0BB7H         LINE#         133
+  C:0BB9H         LINE#         134
+  C:0BBAH         LINE#         135
+  C:0BBBH         LINE#         136
+  C:0BBDH         LINE#         185
+  C:0BC0H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        STEVEN_ALGO
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:0008H         PUBLIC        cnt_str
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00C0H         PUBLIC        P4
+  C:0D2BH         PUBLIC        timer0_isr
+  B:00A8H.7       PUBLIC        EA
+  C:0B11H         PUBLIC        _int_to_string
+  D:00A8H         PUBLIC        IEN0
+  B:0080H.2       PUBLIC        EN
+  D:00B8H         PUBLIC        IPL0
+  C:09BFH         PUBLIC        steven_algo
+  D:00D8H         PUBLIC        CCON
+  B:0080H.0       PUBLIC        RS
+  C:0C43H         PUBLIC        main
+  D:000DH         PUBLIC        x0
+  D:0011H         PUBLIC        y0
+  D:0015H         PUBLIC        x1
+  B:0080H.1       PUBLIC        RW
+  D:0019H         PUBLIC        z0
+  D:001DH         PUBLIC        y1
+  D:0021H         PUBLIC        z1
+  D:0025H         PUBLIC        z2
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  D:0029H         PUBLIC        prod
+  C:0CE2H         PUBLIC        _lcd_write_string
+  C:0D8DH         PUBLIC        _lcd_write_char
+  D:002DH         PUBLIC        cnt
+  B:00A8H.1       PUBLIC        ET0
+  C:0D7BH         PUBLIC        _lcd_cmd
+  C:0CABH         PUBLIC        lcd_init
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  C:0D68H         PUBLIC        display_msg1
+  C:0D6FH         PUBLIC        display_msg2
+  B:0088H.4       PUBLIC        TR0
+  C:0D76H         PUBLIC        display_msg3
+  D:00F8H         PUBLIC        UEPINT
+  D:00C8H         PUBLIC        T2CON
+  D:0031H         PUBLIC        prod_str
+  C:0D0BH         PUBLIC        _msdelay
+  D:003BH         PUBLIC        x
+  D:003FH         PUBLIC        y
+  -------         PROC          LCD_INIT
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/08/2023  15:44:11  PAGE 4
+
+
+  C:0CABH         LINE#         25
+  C:0CABH         LINE#         26
+  C:0CABH         LINE#         27
+  C:0CAEH         LINE#         28
+  C:0CB0H         LINE#         29
+  C:0CB2H         LINE#         30
+  C:0CB4H         LINE#         32
+  C:0CBAH         LINE#         33
+  C:0CBDH         LINE#         34
+  C:0CC4H         LINE#         35
+  C:0CC7H         LINE#         36
+  C:0CCEH         LINE#         37
+  C:0CD1H         LINE#         38
+  C:0CD8H         LINE#         39
+  C:0CDBH         LINE#         40
+  -------         ENDPROC       LCD_INIT
+  C:0D07H         SYMBOL        L?0024
+  -------         PROC          L?0023
+  -------         ENDPROC       L?0023
+  C:0D07H         SYMBOL        L?0024
+  -------         PROC          _MSDELAY
+  D:0006H         SYMBOL        time
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:0D0BH         LINE#         47
+  C:0D0BH         LINE#         48
+  C:0D0BH         LINE#         50
+  C:0D15H         LINE#         51
+  C:0D15H         LINE#         52
+  C:0D23H         LINE#         53
+  C:0D2AH         LINE#         54
+  -------         ENDPROC       _MSDELAY
+  -------         PROC          _INT_TO_STRING
+  D:0043H         SYMBOL        val
+  D:0045H         SYMBOL        temp_str_data
+  C:0B11H         LINE#         60
+  C:0B1BH         LINE#         61
+  C:0B1BH         LINE#         63
+  C:0B28H         LINE#         64
+  C:0B4FH         LINE#         65
+  C:0B76H         LINE#         66
+  C:0B9DH         LINE#         67
+  -------         ENDPROC       _INT_TO_STRING
+  -------         PROC          _LCD_CMD
+  D:0006H         SYMBOL        i
+  C:0D7BH         LINE#         76
+  C:0D7BH         LINE#         77
+  C:0D7BH         LINE#         78
+  C:0D7DH         LINE#         79
+  C:0D7FH         LINE#         80
+  C:0D81H         LINE#         81
+  C:0D83H         LINE#         82
+  C:0D8AH         LINE#         83
+  C:0D8CH         LINE#         84
+  -------         ENDPROC       _LCD_CMD
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/08/2023  15:44:11  PAGE 5
+
+
+  -------         PROC          _LCD_WRITE_CHAR
+  D:0007H         SYMBOL        ch
+  C:0D8DH         LINE#         92
+  C:0D8DH         LINE#         93
+  C:0D8DH         LINE#         94
+  C:0D8FH         LINE#         95
+  C:0D91H         LINE#         96
+  C:0D93H         LINE#         97
+  C:0D95H         LINE#         98
+  C:0D9CH         LINE#         99
+  C:0D9EH         LINE#         100
+  -------         ENDPROC       _LCD_WRITE_CHAR
+  -------         PROC          _LCD_WRITE_STRING
+  D:0043H         SYMBOL        s
+  C:0CE2H         LINE#         108
+  C:0CE8H         LINE#         109
+  C:0CE8H         LINE#         110
+  C:0CF3H         LINE#         111
+  C:0CF3H         LINE#         112
+  C:0D04H         LINE#         113
+  C:0D06H         LINE#         114
+  -------         ENDPROC       _LCD_WRITE_STRING
+  -------         PROC          TIMER0_ISR
+  C:0D2BH         LINE#         21
+  C:0D2FH         LINE#         22
+  C:0D44H         LINE#         23
+  C:0D47H         LINE#         24
+  C:0D4AH         LINE#         25
+  -------         ENDPROC       TIMER0_ISR
+  -------         PROC          STEVEN_ALGO
+  C:09BFH         LINE#         26
+  C:09BFH         LINE#         27
+  C:09C1H         LINE#         28
+  C:09E2H         LINE#         29
+  C:09FBH         LINE#         30
+  C:0A1CH         LINE#         31
+  C:0A35H         LINE#         32
+  C:0A50H         LINE#         33
+  C:0A83H         LINE#         34
+  C:0A9EH         LINE#         35
+  C:0B0EH         LINE#         36
+  C:0B10H         LINE#         37
+  -------         ENDPROC       STEVEN_ALGO
+  -------         PROC          MAIN
+  C:0C43H         LINE#         39
+  C:0C43H         LINE#         40
+  C:0C4CH         LINE#         41
+  C:0C4FH         LINE#         42
+  C:0C52H         LINE#         43
+  C:0C55H         LINE#         44
+  C:0C57H         LINE#         45
+  C:0C59H         LINE#         46
+  C:0C5FH         LINE#         47
+  C:0C62H         LINE#         48
+  C:0C6BH         LINE#         49
+  C:0C6EH         LINE#         50
+  C:0C71H         LINE#         52
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/08/2023  15:44:11  PAGE 6
+
+
+  C:0C7EH         LINE#         53
+  C:0C87H         LINE#         54
+  C:0C8EH         LINE#         55
+  C:0C97H         LINE#         56
+  C:0CA0H         LINE#         57
+  C:0CA9H         LINE#         58
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        STEVEN_ALGO
+
+  -------         MODULE        ?C?CLDPTR
+  C:0800H         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+  -------         MODULE        ?C?CSTPTR
+  C:0819H         PUBLIC        ?C?CSTPTR
+  -------         ENDMOD        ?C?CSTPTR
+
+  -------         MODULE        ?C?CSTOPTR
+  C:082BH         PUBLIC        ?C?CSTOPTR
+  -------         ENDMOD        ?C?CSTOPTR
+
+  -------         MODULE        ?C?UIDIV
+  C:084DH         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+  -------         MODULE        ?C?LMUL
+  C:08A2H         PUBLIC        ?C?LMUL
+  -------         ENDMOD        ?C?LMUL
+
+  -------         MODULE        ?C?ULDIV
+  C:092DH         PUBLIC        ?C?ULDIV
+  -------         ENDMOD        ?C?ULDIV
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LCD_INIT?STEVEN_ALGO
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0365H BYTE (42%) *
+******************************************************************************
+
+Program Size: data=73.0 xdata=0 code=1445
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)

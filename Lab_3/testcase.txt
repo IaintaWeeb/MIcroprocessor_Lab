@@ -1,0 +1,23 @@
+testcase1:
+
+1000
+0010
+1111
+1100
+0100
+
+Number to be searched:
+
+0010
+
+testcase2:
+
+0111
+0110
+1101
+1001
+1011
+
+Number to be searched:
+
+1110

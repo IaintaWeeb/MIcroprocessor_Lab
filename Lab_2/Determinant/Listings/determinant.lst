@@ -1,0 +1,56 @@
+A51 MACRO ASSEMBLER  DETERMINANT                                                          01/16/2023 15:00:50 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\determinant.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE determinant.asm SET(SMALL) DEBUG PRINT(.\Listings\determinant.lst) OBJE
+                      CT(.\Objects\determinant.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0H
+0000 020070            2     LJMP MAIN
+0070                   3     ORG 70H
+0070                   4     MAIN:
+0070 3130              5             CALL DET
+0072 80FE              6             HERE: SJMP HERE
+0130                   7             ORG 130H
+                       8             
+0130                   9             DET:
+0130 E562             10                     MOV A, 62H
+0132 8561F0           11                     MOV B, 61H
+0135 A4               12                     MUL AB
+0136 C0E0             13                     PUSH ACC
+0138 C0F0             14                     PUSH B
+013A E560             15                     MOV A, 60H
+013C 8563F0           16                     MOV B, 63H
+013F A4               17                     MUL AB
+0140 D003             18                     POP 03H
+0142 D004             19                     POP 04H
+0144 C3               20                     CLR C
+0145 9C               21                     SUBB A, R4
+0146 F571             22                     MOV 71H, A
+0148 E5F0             23                     MOV A, B
+014A 9B               24                     SUBB A, R3
+014B F570             25                     MOV 70H, A
+014D 22               26             RET
+                      27     END
+A51 MACRO ASSEMBLER  DETERMINANT                                                          01/16/2023 15:00:50 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+ACC. . . . . . . .  D ADDR   00E0H   A   
+B. . . . . . . . .  D ADDR   00F0H   A   
+DET. . . . . . . .  C ADDR   0130H   A   
+HERE . . . . . . .  C ADDR   0072H   A   
+MAIN . . . . . . .  C ADDR   0070H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

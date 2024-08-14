@@ -1,0 +1,27 @@
+ORG 0H
+LJMP MAIN
+ORG 70H
+MAIN:
+	CALL DET
+	HERE: SJMP HERE
+	ORG 130H
+	// *****************
+	DET:
+		MOV A, 62H
+		MOV B, 61H
+		MUL AB
+		PUSH ACC
+		PUSH B
+		MOV A, 60H
+		MOV B, 63H
+		MUL AB
+		POP 03H
+		POP 04H
+		CLR C
+		SUBB A, R4
+		MOV 71H, A
+		MOV A, B
+		SUBB A, R3
+		MOV 70H, A
+	RET
+END

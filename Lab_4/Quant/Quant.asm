@@ -1,0 +1,132 @@
+ORG 0H
+LJMP MAIN
+ORG 100H
+MAIN:
+MOV R0, #60H
+MOV R1, #70H
+MOV R6, #1FH
+CALL TAKE_INP
+CALL QUANT_ENC
+CALL LED_DISP
+HERE: SJMP HERE
+ORG 130H
+// *****************
+DELAY:
+	MOV R2, #100
+	MOV R5, #50
+	PUSH 05H
+	LOOP2:
+		PUSH 02H 
+		LOOP1:
+			ACALL delay_1ms
+			DJNZ R2 ,LOOP1
+		POP 02H
+		DJNZ R5,LOOP2
+	POP 05H
+	RET
+TAKE_INP:
+	MOV 90H, #0FH
+	MOV 90H,R6
+	PUSH ACC
+	MOV A, R6
+	ADD A, #10H
+	MOV R6, A 
+	POP ACC
+	CALL DELAY
+	CALL DELAY
+	MOV C, P1.0
+	MOV ACC.0, C
+	MOV C, P1.1
+	MOV ACC.1, C
+	MOV C, P1.2
+	MOV ACC.2, C
+	MOV C, P1.3
+	MOV ACC.3, C
+	MOV 90H,R6
+	PUSH ACC
+	MOV A, R6
+	ADD A, #10H
+	MOV R6, A
+	POP ACC
+	CALL DELAY
+	CALL DELAY
+	MOV C, P1.0
+	MOV ACC.4, C
+	MOV C, P1.1
+	MOV ACC.5, C
+	MOV C, P1.2
+	MOV ACC.6, C
+	MOV C, P1.3
+	MOV ACC.7, C
+	SWAP A
+	MOV @R0, A
+	INC R0
+	CJNE R0,#64H, TAKE_INP
+	RET		
+QUANT_ENC:
+	MOV R0, #60H
+	MOV R1, #70H
+	MOV R2, #10
+	MOV R3, #20
+	MOV R4, #30
+	MOV R7, #4
+	loop:
+	MOV A,@R0
+	CLR C
+	SUBB A,R2
+	JZ eq10
+	JNC check20
+	MOV @R1,#10H
+	LJMP return
+	check20:
+		MOV A,@R0
+		CLR C
+		SUBB A,R3
+		JZ eq20
+		JNC check30
+		MOV @R1,#20H
+		LJMP return
+		check30:
+			MOV A,@R0
+			CLR C
+			SUBB A,R4
+			JNC else_
+			MOV @R1,#40H
+			LJMP return
+			else_:
+				MOV @R1,#80H
+				LJMP return
+			eq10:
+				MOV @R1,#20H
+				LJMP return
+			eq20:
+				MOV @R1,#40H
+				LJMP return
+	return:INC R0
+	INC R1
+	DJNZ R7,loop
+	RET
+LED_DISP:
+	MOV R1, #70H
+	MOV P1, #00H
+	LOOP4:
+	MOV 90H, @R1
+	CALL DELAY
+	INC R1
+	CJNE R1, #74H, LOOP4
+	LJMP LED_DISP		
+    RET
+delay_1ms:
+	push 00h
+	mov r0, #4
+	h2: acall delay_250us
+	djnz r0, h2
+	pop 00h
+	ret
+delay_250us:
+	push 00h
+	mov r0, #244
+	h1: djnz r0, h1
+	pop 00h
+	ret
+END

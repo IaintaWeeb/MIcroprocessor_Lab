@@ -1,0 +1,164 @@
+A51 MACRO ASSEMBLER  RSA_PRIVATE                                                          02/12/2023 11:28:29 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\RSA_private.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE RSA_private.asm SET(SMALL) DEBUG PRINT(.\Listings\RSA_private.lst) OBJE
+                      CT(.\Objects\RSA_private.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0H
+0000 020070            2     LJMP MAIN
+0070                   3     ORG 70H
+0070                   4     MAIN:
+0070 7413              5             MOV A, #19
+0072 75F00D            6             MOV B, #13
+0075 7571AD            7             MOV 71H, #173
+0078 14                8             DEC A
+0079 15F0              9             DEC B
+007B A4               10             MUL AB
+007C F570             11             MOV 70H, A
+007E 1184             12             CALL KEY_CALC
+0080 11B5             13             CALL DISPLAY
+0082 80FE             14             Here: SJMP Here
+                      15             
+0084                  16             KEY_CALC:
+0084 7A01             17                     MOV R2, #1
+0086                  18                     Loop1:
+0086 E570             19                             MOV A, 70H
+0088 8AF0             20                             MOV B,R2
+008A A4               21                             MUL AB
+008B 04               22                             INC A
+008C 1194             23                             CALL REM
+008E 0A               24                             INC R2
+008F 70F5             25                             JNZ Loop1
+0091 8C72             26                             MOV 72H, R4
+0093 22               27                     RET
+                      28             
+0094                  29             REM:
+0094 AB71             30                     MOV R3, 71H
+0096 7C00             31                     MOV R4, #0
+0098                  32                     Here2:
+0098 C3               33                             CLR C
+0099 C0E0             34                             PUSH ACC
+009B E5F0             35                             MOV A,B
+009D 600C             36                             JZ  last
+009F D0E0             37                             POP ACC
+00A1 9B               38                             SUBB A , R3 
+00A2 0C               39                             INC R4
+00A3 50F3             40                             JNC Here2
+00A5 4000             41                             JC dec_
+00A7 15F0             42                             dec_:DEC B
+00A9 80ED             43                             SJMP here2
+00AB                  44                             last:
+00AB D0E0             45                                     POP ACC
+00AD C3               46                                     last2:CLR C
+00AE 9B               47                                     SUBB A , R3
+00AF 0C               48                                     INC R4
+00B0 50FB             49                                     JNC last2
+00B2 2B               50                                     ADD A,R3
+00B3 1C               51                                     DEC R4
+00B4 22               52                     RET     
+                      53             
+00B5                  54             DISPLAY:
+00B5                  55                     loop2:
+00B5 759000           56                             MOV P1,#00H
+00B8 E572             57                             MOV A, 72H
+A51 MACRO ASSEMBLER  RSA_PRIVATE                                                          02/12/2023 11:28:29 PAGE     2
+
+00BA A2E4             58                             MOV C,ACC.4
+00BC 9294             59                             MOV P1.4,C
+00BE A2E5             60                             MOV C,ACC.5
+00C0 9295             61                             MOV P1.5,C
+00C2 A2E6             62                             MOV C,ACC.6
+00C4 9296             63                             MOV P1.6,C
+00C6 A2E7             64                             MOV C,ACC.7
+00C8 9297             65                             MOV P1.7,C
+00CA 11F7             66                             CALL Delay
+00CC 11F7             67                             CALL Delay
+00CE 11F7             68                             CALL Delay
+00D0 11F7             69                             CALL Delay
+00D2 11F7             70                             CALL Delay
+00D4 759000           71                             MOV P1,#0
+00D7 11F7             72                             CALL DELAY
+00D9 A2E0             73                             MOV C,ACC.0
+00DB 9294             74                             MOV P1.4,C
+00DD A2E1             75                             MOV C,ACC.1
+00DF 9295             76                             MOV P1.5,C
+00E1 A2E2             77                             MOV C,ACC.2
+00E3 9296             78                             MOV P1.6,C
+00E5 A2E3             79                             MOV C,ACC.3
+00E7 9297             80                             MOV P1.7,C
+00E9 11F7             81                             CALL Delay
+00EB 11F7             82                             CALL Delay
+00ED 11F7             83                             CALL Delay
+00EF 11F7             84                             CALL Delay
+00F1 11F7             85                             CALL Delay
+00F3 0200B5           86                             LJMP loop2
+00F6 22               87                     RET     
+                      88             
+00F7                  89             Delay:
+00F7 7A64             90                     MOV R2, #100
+00F9 7D0A             91                     MOV R5, #10
+00FB C005             92                     PUSH 05H
+00FD                  93                     LOOP4:
+00FD C002             94                             PUSH 02H 
+00FF                  95                             LOOP3:
+00FF 310A             96                                     ACALL delay_1ms
+0101 DAFC             97                                     DJNZ R2 ,LOOP3
+0103 D002             98                             POP 02H
+0105 DDF6             99                             DJNZ R5,LOOP4
+0107 D005            100                     POP 05H
+0109 22              101                     RET
+                     102             
+010A                 103             delay_1ms:
+010A C000            104                     push 00h
+010C 7804            105                     mov r0, #4
+010E 3115            106                     h2: acall delay_250us
+0110 D8FC            107                     djnz r0, h2
+0112 D000            108                     pop 00h
+0114 22              109                     ret
+0115                 110             delay_250us:
+0115 C000            111                     push 00h
+0117 78F4            112                     mov r0, #244
+0119 D8FE            113                     h1: djnz r0, h1
+011B D000            114                     pop 00h
+011D 22              115                     ret
+                     116             
+                     117     END
+A51 MACRO ASSEMBLER  RSA_PRIVATE                                                          02/12/2023 11:28:29 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+ACC. . . . . . . .  D ADDR   00E0H   A   
+B. . . . . . . . .  D ADDR   00F0H   A   
+DEC_ . . . . . . .  C ADDR   00A7H   A   
+DELAY. . . . . . .  C ADDR   00F7H   A   
+DELAY_1MS. . . . .  C ADDR   010AH   A   
+DELAY_250US. . . .  C ADDR   0115H   A   
+DISPLAY. . . . . .  C ADDR   00B5H   A   
+H1 . . . . . . . .  C ADDR   0119H   A   
+H2 . . . . . . . .  C ADDR   010EH   A   
+HERE . . . . . . .  C ADDR   0082H   A   
+HERE2. . . . . . .  C ADDR   0098H   A   
+KEY_CALC . . . . .  C ADDR   0084H   A   
+LAST . . . . . . .  C ADDR   00ABH   A   
+LAST2. . . . . . .  C ADDR   00ADH   A   
+LOOP1. . . . . . .  C ADDR   0086H   A   
+LOOP2. . . . . . .  C ADDR   00B5H   A   
+LOOP3. . . . . . .  C ADDR   00FFH   A   
+LOOP4. . . . . . .  C ADDR   00FDH   A   
+MAIN . . . . . . .  C ADDR   0070H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+REM. . . . . . . .  C ADDR   0094H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

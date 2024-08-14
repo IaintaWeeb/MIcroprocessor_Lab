@@ -1,0 +1,81 @@
+A51 MACRO ASSEMBLER  MOD_ADDSUB                                                           01/16/2023 14:15:07 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\mod_addsub.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE mod_addsub.asm SET(SMALL) DEBUG PRINT(.\Listings\mod_addsub.lst) OBJECT
+                      (.\Objects\mod_addsub.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0H
+0000 020100            2     LJMP MAIN
+0100                   3     ORG 100H
+0100                   4     MAIN:
+0100 7961              5             MOV R1, #61H
+0102 3130              6             CALL MODADD
+0104 3146              7             CALL MODSUB
+0106 80FE              8             HERE: SJMP HERE
+0130                   9                     ORG 130H
+                      10                     
+0130                  11                     MODADD:
+0130 E570             12                             MOV A, 70H
+0132 89F0             13                             MOV B, R1
+0134 84               14                             DIV AB
+0135 ABF0             15                             MOV R3, B
+0137 E571             16                             MOV A, 71H
+0139 89F0             17                             MOV B, R1
+013B 84               18                             DIV AB
+013C E5F0             19                             MOV A, B
+013E 2B               20                             ADD A, R3
+013F 89F0             21                             MOV B, R1
+0141 84               22                             DIV AB
+0142 85F072           23                             MOV 72H, B
+0145 22               24                             RET
+0146                  25                     MODSUB:
+0146 E570             26                             MOV A, 70H
+0148 AA71             27                             MOV R2, 71H
+014A 89F0             28                             MOV B, R1
+014C C3               29                             CLR C
+014D 9A               30                             SUBB A, R2
+014E 4002             31                             jc  ifcarry
+0150 500D             32                             jnc ifncarry
+0152                  33                             ifcarry:
+0152 F4               34                                     CPL A
+0153 04               35                                     INC A
+0154 84               36                                     DIV AB
+0155 ABF0             37                                     MOV R3, B  
+0157 E9               38                                     MOV A, R1
+0158 C3               39                                     CLR C
+0159 9B               40                                     SUBB A, R3
+015A F573             41                                     MOV 73H, A
+015C 020166           42                                     ljmp return
+015F                  43                             ifncarry:
+015F 84               44                                     DIV AB
+0160 85F073           45                                     MOV 73H, B
+0163 020166           46                                     ljmp return
+0166 22               47                             return: RET
+0167 22               48             RET
+                      49     END
+A51 MACRO ASSEMBLER  MOD_ADDSUB                                                           01/16/2023 14:15:07 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+HERE . . . . . . .  C ADDR   0106H   A   
+IFCARRY. . . . . .  C ADDR   0152H   A   
+IFNCARRY . . . . .  C ADDR   015FH   A   
+MAIN . . . . . . .  C ADDR   0100H   A   
+MODADD . . . . . .  C ADDR   0130H   A   
+MODSUB . . . . . .  C ADDR   0146H   A   
+RETURN . . . . . .  C ADDR   0166H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

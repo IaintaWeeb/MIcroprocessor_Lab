@@ -1,0 +1,118 @@
+C51 COMPILER V9.60.7.0   MAIN                                                              04/08/2023 17:28:30 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          /**********************************************************
+   2          EE337: ADC IC MCP3008 interfacing with pt-51
+   3          (1) Complete spi_init() function from spi.h 
+   4          
+   5          ***********************************************************/
+   6          
+   7          #include <at89c5131.h>
+   8          #include "serial.c" 
+   9          unsigned char WELinit[4]={'5','5','8','6'};
+  10          unsigned char WEL[4]={'5','5','8','6'};
+  11          int q;
+  12          int i;
+  13          int q_;
+  14          
+  15          void issue_state(void){
+  16   1        transmit_string("Enter Resource to be borrowed:");
+  17   1        while(1){
+  18   2          i=receive_char()-48;
+  19   2          if ((i==1)||(i==2)||(i==3)||(i==4)){
+  20   3              transmit_string("Enter Quantity:");
+  21   3              while(1){
+  22   4                q=receive_char()-48;
+  23   4                q_= WEL[i-1]-48;
+  24   4                if (q_ >= q){
+  25   5                  transmit_string("Requested resource allocated!");
+  26   5                  WEL[i-1]= q_-q + 48;
+  27   5                  break;
+  28   5                }
+  29   4                else{
+  30   5                  transmit_string("Requested resource not available...");
+  31   5                  break;
+  32   5                }
+  33   4              }
+  34   3              break;
+  35   3            }
+  36   2        }
+  37   1      } 
+  38          
+  39          void return_state(void){
+  40   1        transmit_string("Enter Resource to be returned:");
+  41   1        while(1){
+  42   2          i=receive_char()-48;
+  43   2          if(WEL[i-1]==WELinit[i-1]){
+  44   3            transmit_string(" You can’t return what you don’t have...");
+  45   3            continue;
+  46   3          }
+  47   2          if ((i==1)||(i==2)||(i==3)||(i==4)){
+  48   3              transmit_string("Enter Quantity:");
+  49   3              while(1){
+  50   4                q=receive_char()-48;
+  51   4                q_= WEL[i-1]-48;
+  52   4                if (q_+q <= WELinit[i-1]-48){
+  53   5                  transmit_string("Returned resource received!");
+  54   5                  WEL[i-1]= (q_+q + 48);
+C51 COMPILER V9.60.7.0   MAIN                                                              04/08/2023 17:28:30 PAGE 2   
+
+  55   5                  transmit_char(WEL[i-1]);
+  56   5                  break;
+  57   5                }
+  58   4                else{
+  59   5                  transmit_string("Returned resource out of bounds...");
+  60   5                  break;
+  61   5                }
+  62   4              }
+  63   3              break;
+  64   3            }
+  65   2        }
+  66   1      } 
+  67          
+  68          void main(void)
+  69          {
+  70   1        uart_init();
+  71   1        while(1)
+  72   1        {
+  73   2          transmit_string("Resources available: DSO-");
+  74   2          transmit_char(WEL[0]);
+  75   2          transmit_string(" AFG- ");
+  76   2          transmit_char(WEL[1]);
+  77   2          transmit_string(" DMM- ");
+  78   2          transmit_char(WEL[2]);
+  79   2          transmit_string(" DPS-");
+  80   2          transmit_char(WEL[3]);
+  81   2          transmit_string("\r\n");
+  82   2          transmit_string("Press I for Issue and R for Return");
+  83   2          transmit_string("\r\n");
+  84   2          if(receive_char()=='I'){
+  85   3            issue_state();
+  86   3          }
+  87   2          if(receive_char()=='R'){
+  88   3            return_state();
+  89   3          }
+  90   2        }
+  91   1      }
+  92          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    522    ----
+   CONSTANT SIZE    =    332    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     14       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      2    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

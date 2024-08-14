@@ -1,0 +1,3 @@
+".\Objects\Decrpt_cipher.obj" 
+TO ".\Objects\Decrpt_cipher" 
+PRINT(".\Listings\Decrpt_cipher.m51") RAMSIZE(256) 

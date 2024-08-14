@@ -1,0 +1,3 @@
+".\Objects\RSA_private.obj" 
+TO ".\Objects\RSA_private" 
+PRINT(".\Listings\RSA_private.m51") RAMSIZE(256) 

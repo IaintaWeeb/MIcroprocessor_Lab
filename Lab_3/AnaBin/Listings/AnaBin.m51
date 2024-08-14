@@ -1,0 +1,91 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    01/23/2023  13:16:19  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\AnaBin.obj TO .\Objects\AnaBin PRINT (.\Listings\AnaBin.m51) RAMSIZE (256)
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\AnaBin.obj (ANABIN)
+
+
+LINK MAP OF MODULE:  .\Objects\AnaBin (ANABIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0172H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\AnaBin (ANABIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ANABIN
+  C:0148H         SYMBOL        CHECK20
+  C:0154H         SYMBOL        CHECK30
+  C:015EH         SYMBOL        ELSE_
+  C:0163H         SYMBOL        EQ10
+  C:0168H         SYMBOL        EQ20
+  C:0102H         SYMBOL        HERE
+  C:013CH         SYMBOL        LOOP
+  C:0100H         SYMBOL        MAIN
+  C:0130H         SYMBOL        QUANT
+  C:016DH         SYMBOL        RETURN
+  C:0000H         LINE#         2
+  C:0100H         LINE#         5
+  C:0102H         LINE#         6
+  C:0130H         LINE#         10
+  C:0132H         LINE#         11
+  C:0134H         LINE#         12
+  C:0136H         LINE#         13
+  C:0138H         LINE#         14
+  C:013AH         LINE#         15
+  C:013CH         LINE#         17
+  C:013DH         LINE#         18
+  C:013EH         LINE#         19
+  C:013FH         LINE#         20
+  C:0141H         LINE#         21
+  C:0143H         LINE#         22
+  C:0145H         LINE#         23
+  C:0148H         LINE#         25
+  C:0149H         LINE#         26
+  C:014AH         LINE#         27
+  C:014BH         LINE#         28
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  01/23/2023  13:16:19  PAGE 2
+
+
+  C:014DH         LINE#         29
+  C:014FH         LINE#         30
+  C:0151H         LINE#         31
+  C:0154H         LINE#         33
+  C:0155H         LINE#         34
+  C:0156H         LINE#         35
+  C:0157H         LINE#         36
+  C:0159H         LINE#         37
+  C:015BH         LINE#         38
+  C:015EH         LINE#         40
+  C:0160H         LINE#         41
+  C:0163H         LINE#         43
+  C:0165H         LINE#         44
+  C:0168H         LINE#         46
+  C:016AH         LINE#         47
+  C:016DH         LINE#         48
+  C:016EH         LINE#         49
+  C:016FH         LINE#         50
+  C:0171H         LINE#         52
+  -------         ENDMOD        ANABIN
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0049H BYTE ( 3%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=370
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

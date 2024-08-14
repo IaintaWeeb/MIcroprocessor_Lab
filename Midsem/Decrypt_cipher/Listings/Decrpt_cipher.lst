@@ -1,0 +1,191 @@
+A51 MACRO ASSEMBLER  DECRPT_CIPHER                                                        02/12/2023 12:55:08 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\Decrpt_cipher.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE Decrpt_cipher.asm SET(SMALL) DEBUG PRINT(.\Listings\Decrpt_cipher.lst) 
+                      OBJECT(.\Objects\Decrpt_cipher.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0H
+0000 020070            2     LJMP MAIN
+0070                   3     ORG 70H
+0070                   4     MAIN:
+0070 7413              5             MOV A, #19
+0072 75F00D            6             MOV B, #13
+0075 757205            7             MOV 72H, #05
+0078 AA72              8             MOV R2, 72H
+007A A4                9             MUL AB
+007B F570             10             MOV 70H, A
+007D 1185             11             CALL Read_pin
+007F 118E             12             CALL msg
+0081 11D5             13             CALL DISPLAY
+0083 80FE             14             Here: SJMP Here
+                      15             
+0085                  16             Read_pin:
+0085 75900F           17                     MOV P1,#0fH
+0088 3117             18                     CALL delay
+008A 859071           19                     MOV 71H, P1
+008D 22               20                     RET
+                      21                     
+008E                  22             msg:
+008E E571             23                     MOV A, 71H
+0090 7A04             24                     MOV R2,#4
+0092                  25                     loop:
+0092 1199             26                             CALL MULT
+0094 DAFC             27                             DJNZ R2,Loop
+0096 11B2             28                     CALL REM
+0098 22               29                     RET
+                      30             
+0099                  31             MULT:
+0099 C0F0             32                     PUSH B
+009B 8571F0           33                     MOV B, 71H
+009E A4               34                     MUL AB 
+009F FF               35                     MOV R7,A
+00A0 AEF0             36                     MOV R6,B
+00A2 D0F0             37                     POP B
+00A4 E5F0             38                     MOV A,B
+00A6 8571F0           39                     MOV B,71H
+00A9 A4               40                     MUL AB
+00AA 8EF0             41                     MOV B,R6
+                      42                     
+00AC 25F0             43                     ADD A,B
+00AE F5F0             44                     MOV B,A
+00B0 EF               45                     MOV A,R7
+                      46                     
+00B1 22               47             RET
+                      48                     
+                      49                     
+                      50                     
+00B2                  51             REM:
+00B2 AB70             52                     MOV R3, 70H
+00B4 7C00             53                     MOV R4, #0
+00B6                  54                     Here2:
+00B6 C3               55                             CLR C
+00B7 C0E0             56                             PUSH ACC
+00B9 E5F0             57                             MOV A,B
+A51 MACRO ASSEMBLER  DECRPT_CIPHER                                                        02/12/2023 12:55:08 PAGE     2
+
+00BB 600C             58                             JZ  last
+00BD D0E0             59                             POP ACC
+00BF 9B               60                             SUBB A , R3 
+00C0 0C               61                             INC R4
+00C1 50F3             62                             JNC Here2
+00C3 4000             63                             JC dec_
+00C5 15F0             64                             dec_:DEC B
+00C7 80ED             65                             SJMP here2
+00C9                  66                             last:
+00C9 D0E0             67                                     POP ACC
+00CB C3               68                                     last2:CLR C
+00CC 9B               69                                     SUBB A , R3
+00CD 0C               70                                     INC R4
+00CE 50FB             71                                     JNC last2
+00D0 2B               72                                     ADD A,R3
+00D1 1C               73                                     DEC R4
+00D2 F573             74                                     MOV 73H,A
+00D4 22               75                     RET     
+                      76             
+00D5                  77             DISPLAY:
+00D5                  78                     loop2:
+00D5 759000           79                             MOV P1,#00H
+00D8 E573             80                             MOV A, 73H
+00DA A2E4             81                             MOV C,ACC.4
+00DC 9294             82                             MOV P1.4,C
+00DE A2E5             83                             MOV C,ACC.5
+00E0 9295             84                             MOV P1.5,C
+00E2 A2E6             85                             MOV C,ACC.6
+00E4 9296             86                             MOV P1.6,C
+00E6 A2E7             87                             MOV C,ACC.7
+00E8 9297             88                             MOV P1.7,C
+00EA 3117             89                             CALL Delay
+00EC 3117             90                             CALL Delay
+00EE 3117             91                             CALL Delay
+00F0 3117             92                             CALL Delay
+00F2 3117             93                             CALL Delay
+00F4 759000           94                             MOV P1,#0
+00F7 3117             95                             CALL DELAY
+00F9 A2E0             96                             MOV C,ACC.0
+00FB 9294             97                             MOV P1.4,C
+00FD A2E1             98                             MOV C,ACC.1
+00FF 9295             99                             MOV P1.5,C
+0101 A2E2            100                             MOV C,ACC.2
+0103 9296            101                             MOV P1.6,C
+0105 A2E3            102                             MOV C,ACC.3
+0107 9297            103                             MOV P1.7,C
+0109 3117            104                             CALL Delay
+010B 3117            105                             CALL Delay
+010D 3117            106                             CALL Delay
+010F 3117            107                             CALL Delay
+0111 3117            108                             CALL Delay
+0113 0200D5          109                             LJMP loop2
+0116 22              110                     RET     
+                     111             
+0117                 112             Delay:
+0117 7A64            113                     MOV R2, #100
+0119 7D0A            114                     MOV R5, #10
+011B C005            115                     PUSH 05H
+011D                 116                     LOOP4:
+011D C002            117                             PUSH 02H 
+011F                 118                             LOOP3:
+011F 312A            119                                     ACALL delay_1ms
+0121 DAFC            120                                     DJNZ R2 ,LOOP3
+0123 D002            121                             POP 02H
+0125 DDF6            122                             DJNZ R5,LOOP4
+0127 D005            123                     POP 05H
+A51 MACRO ASSEMBLER  DECRPT_CIPHER                                                        02/12/2023 12:55:08 PAGE     3
+
+0129 22              124                     RET
+                     125             
+012A                 126             delay_1ms:
+012A C000            127                     push 00h
+012C 7804            128                     mov r0, #4
+012E 3135            129                     h2: acall delay_250us
+0130 D8FC            130                     djnz r0, h2
+0132 D000            131                     pop 00h
+0134 22              132                     ret
+0135                 133             delay_250us:
+0135 C000            134                     push 00h
+0137 78F4            135                     mov r0, #244
+0139 D8FE            136                     h1: djnz r0, h1
+013B D000            137                     pop 00h
+013D 22              138                     ret
+                     139             
+                     140     END
+A51 MACRO ASSEMBLER  DECRPT_CIPHER                                                        02/12/2023 12:55:08 PAGE     4
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+ACC. . . . . . . .  D ADDR   00E0H   A   
+B. . . . . . . . .  D ADDR   00F0H   A   
+DEC_ . . . . . . .  C ADDR   00C5H   A   
+DELAY. . . . . . .  C ADDR   0117H   A   
+DELAY_1MS. . . . .  C ADDR   012AH   A   
+DELAY_250US. . . .  C ADDR   0135H   A   
+DISPLAY. . . . . .  C ADDR   00D5H   A   
+H1 . . . . . . . .  C ADDR   0139H   A   
+H2 . . . . . . . .  C ADDR   012EH   A   
+HERE . . . . . . .  C ADDR   0083H   A   
+HERE2. . . . . . .  C ADDR   00B6H   A   
+LAST . . . . . . .  C ADDR   00C9H   A   
+LAST2. . . . . . .  C ADDR   00CBH   A   
+LOOP . . . . . . .  C ADDR   0092H   A   
+LOOP2. . . . . . .  C ADDR   00D5H   A   
+LOOP3. . . . . . .  C ADDR   011FH   A   
+LOOP4. . . . . . .  C ADDR   011DH   A   
+MAIN . . . . . . .  C ADDR   0070H   A   
+MSG. . . . . . . .  C ADDR   008EH   A   
+MULT . . . . . . .  C ADDR   0099H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+READ_PIN . . . . .  C ADDR   0085H   A   
+REM. . . . . . . .  C ADDR   00B2H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

@@ -1,0 +1,90 @@
+A51 MACRO ASSEMBLER  TONE_GEN                                                             02/06/2023 15:35:00 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\tone_gen.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE tone_gen.asm SET(SMALL) DEBUG PRINT(.\Listings\tone_gen.lst) OBJECT(.\O
+                      bjects\tone_gen.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0H
+0000 020100            2     LJMP MAIN
+0100                   3     ORG 100H
+0100                   4     MAIN:
+0100 75900F            5             MOV 90H, #0FH
+0103 758000            6             MOV P0, #00H
+0106 758901            7             MOV TMOD, #01H
+0109 C28D              8             CLR TF0
+010B                   9             loop:
+010B B287             10                     CPL P0.7
+010D 3114             11                     CALL DELAY
+010F 3114             12                     CALL DELAY
+0111 02010B           13                     LJMP loop
+                      14                     
+0114                  15             DELAY:
+0114 20932D           16                     JB P1.3, Ma
+0117 209221           17                     JB P1.2, Ga
+011A 209115           18                     JB P1.1, Re
+011D 209009           19                     JB P1.0, Sa
+0120 758A00           20                     MOV TL0, #00H
+0123 758C00           21                     MOV TH0, #00H
+0126 02014D           22                     LJMP Here
+                      23                     
+0129                  24                     Sa:
+0129 758A57           25                             MOV TL0, #57H
+012C 758CF8           26                             MOV TH0, #0F8H
+012F 02014D           27                             LJMP Here
+                      28                             
+0132                  29                     Re:
+0132 758A44           30                             MOV TL0, #44H
+0135 758CF9           31                             MOV TH0, #0F9H
+0138 02014D           32                             LJMP Here
+013B                  33                     Ga:
+013B 758AFE           34                             MOV TL0, #0FEH
+013E 758CF9           35                             MOV TH0, #0F9H
+0141 02014D           36                             LJMP Here
+                      37                     
+0144                  38                     Ma:
+0144 758A57           39                             MOV TL0, #57H
+0147 758CFA           40                             MOV TH0, #0FAH
+014A 02014D           41                             LJMP Here
+                      42                     
+014D                  43                     Here:
+014D D28C             44                             SETB TR0
+014F 308DFD           45                             loop2: JNB TF0, loop2
+0152 C28C             46                             CLR TR0
+0154 C28D             47                             CLR TF0
+0156 22               48                             RET
+0157 22               49             RET
+                      50     END
+A51 MACRO ASSEMBLER  TONE_GEN                                                             02/06/2023 15:35:00 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY. . . . . . .  C ADDR   0114H   A   
+GA . . . . . . . .  C ADDR   013BH   A   
+HERE . . . . . . .  C ADDR   014DH   A   
+LOOP . . . . . . .  C ADDR   010BH   A   
+LOOP2. . . . . . .  C ADDR   014FH   A   
+MA . . . . . . . .  C ADDR   0144H   A   
+MAIN . . . . . . .  C ADDR   0100H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+RE . . . . . . . .  C ADDR   0132H   A   
+SA . . . . . . . .  C ADDR   0129H   A   
+TF0. . . . . . . .  B ADDR   0088H.5 A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TL0. . . . . . . .  D ADDR   008AH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

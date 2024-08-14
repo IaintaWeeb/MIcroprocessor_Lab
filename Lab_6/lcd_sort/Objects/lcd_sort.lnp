@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\lcd.obj" 
+TO ".\Objects\lcd_sort" 
+PRINT(".\Listings\lcd_sort.m51") RAMSIZE(256) 

@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\Steven_algo.obj" 
+TO ".\Objects\Steven_algo" 
+PRINT(".\Listings\Steven_algo.m51") RAMSIZE(256) 

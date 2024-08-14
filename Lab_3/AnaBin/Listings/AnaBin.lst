@@ -1,0 +1,87 @@
+A51 MACRO ASSEMBLER  ANABIN                                                               01/23/2023 13:16:19 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\AnaBin.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE AnaBin.asm SET(SMALL) DEBUG PRINT(.\Listings\AnaBin.lst) OBJECT(.\Objec
+                      ts\AnaBin.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0H
+0000 020100            2     LJMP MAIN
+0100                   3     ORG 100H
+0100                   4     MAIN:
+0100 3130              5             CALL QUANT
+0102 80FE              6             HERE: SJMP HERE
+0130                   7             ORG 130H
+                       8     
+0130                   9             QUANT:
+0130 7860             10                     MOV R0, #60H
+0132 7970             11                     MOV R1, #70H
+0134 7A0A             12                     MOV R2, #10
+0136 7B14             13                     MOV R3, #20
+0138 7C1E             14                     MOV R4, #30
+013A 7F08             15                     MOV R7, #8
+013C                  16                     loop:
+013C E6               17                     MOV A,@R0
+013D C3               18                     CLR C
+013E 9A               19                     SUBB A,R2
+013F 6022             20                     JZ eq10
+0141 5005             21                     JNC check20
+0143 7705             22                     MOV @R1,#5
+0145 02016D           23                     LJMP return
+0148                  24                     check20:
+0148 E6               25                             MOV A,@R0
+0149 C3               26                             CLR C
+014A 9B               27                             SUBB A,R3
+014B 601B             28                             JZ eq20
+014D 5005             29                             JNC check30
+014F 770F             30                             MOV @R1,#15
+0151 02016D           31                             LJMP return
+0154                  32                             check30:
+0154 E6               33                                     MOV A,@R0
+0155 C3               34                                     CLR C
+0156 9C               35                                     SUBB A,R4
+0157 5005             36                                     JNC else_
+0159 7719             37                                     MOV @R1,#25
+015B 02016D           38                                     LJMP return
+015E                  39                                     else_:
+015E 7723             40                                             MOV @R1,#35
+0160 02016D           41                                             LJMP return
+0163                  42                                     eq10:
+0163 770F             43                                             MOV @R1,#15
+0165 02016D           44                                             LJMP return
+0168                  45                                     eq20:
+0168 7719             46                                             MOV @R1,#25
+016A 02016D           47                                             LJMP return
+016D 08               48                     return:INC R0
+016E 09               49                     INC R1
+016F DFCB             50                     DJNZ R7,loop
+                      51     
+0171 22               52             RET
+                      53     END
+A51 MACRO ASSEMBLER  ANABIN                                                               01/23/2023 13:16:19 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+CHECK20. . . . . .  C ADDR   0148H   A   
+CHECK30. . . . . .  C ADDR   0154H   A   
+ELSE_. . . . . . .  C ADDR   015EH   A   
+EQ10 . . . . . . .  C ADDR   0163H   A   
+EQ20 . . . . . . .  C ADDR   0168H   A   
+HERE . . . . . . .  C ADDR   0102H   A   
+LOOP . . . . . . .  C ADDR   013CH   A   
+MAIN . . . . . . .  C ADDR   0100H   A   
+QUANT. . . . . . .  C ADDR   0130H   A   
+RETURN . . . . . .  C ADDR   016DH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

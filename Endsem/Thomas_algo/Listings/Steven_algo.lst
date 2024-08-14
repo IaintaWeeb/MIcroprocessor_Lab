@@ -1,0 +1,85 @@
+C51 COMPILER V9.60.7.0   STEVEN_ALGO                                                       04/08/2023 15:44:11 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE STEVEN_ALGO
+OBJECT MODULE PLACED IN .\Objects\Steven_algo.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Steven_algo.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listin
+                    -gs\Steven_algo.lst) TABS(2) OBJECT(.\Objects\Steven_algo.obj)
+
+line level    source
+
+   1          #include <at89c5131.h>
+   2          #include "lcd.h"
+   3          
+   4          code unsigned char display_msg1[]="PROD: ";
+   5          code unsigned char display_msg2[]="TIME: ";
+   6          code unsigned char display_msg3[]=" us ";
+   7          long unsigned int cnt ;
+   8          long unsigned int x=14571;
+   9          long unsigned int x0;
+  10          long unsigned int x1;
+  11          long unsigned int y0;
+  12          long unsigned int y1;
+  13          long unsigned int z0;
+  14          long unsigned int z1;
+  15          long unsigned int z2;
+  16          long unsigned int y=8636;
+  17          long unsigned int prod;
+  18          unsigned char cnt_str[5];
+  19          unsigned char prod_str[10]="125835156";
+  20          //interrupt_subroutine
+  21          void timer0_isr () interrupt 1{
+  22   1        cnt=cnt+1;
+  23   1        TH0 = 0xFF;
+  24   1        TL0 = 0xFA;
+  25   1      }
+  26          void steven_algo(void){
+  27   1        TR0=1;
+  28   1        x0=x%10;
+  29   1        x1=x/10;
+  30   1        y0=y%10;
+  31   1        y1=y/10;
+  32   1        z0=x0*y0;
+  33   1        z1=(x1+x0)*(y0+y1);
+  34   1        z2=x1*y1;
+  35   1        prod=z0+10*(z1-z0-z2)+100*(z2);
+  36   1        TR0=0;
+  37   1      }
+  38          //Main function
+  39          void main(void){
+  40   1        cnt=0;
+  41   1        TMOD = 0x01; //timer0 as counter in mode1
+  42   1        TH0 = 0xFF;
+  43   1        TL0 = 0xFA;
+  44   1        ET0 = 1; //activate interrupts for both timers
+  45   1        EA = 1;  //activate global interrupts
+  46   1        lcd_cmd(0x80);                          
+  47   1        msdelay(4);
+  48   1        lcd_write_string(display_msg1);
+  49   1        msdelay(4);
+  50   1        steven_algo();
+  51   1        //int_to_string(prod,prod_str);
+  52   1        int_to_string(cnt,cnt_str);
+  53   1        lcd_write_string(prod_str);
+  54   1        lcd_cmd(0xC0);
+C51 COMPILER V9.60.7.0   STEVEN_ALGO                                                       04/08/2023 15:44:11 PAGE 2   
+
+  55   1        lcd_write_string(display_msg2);
+  56   1        lcd_write_string((cnt_str));
+  57   1        lcd_write_string(display_msg3);
+  58   1        while(1);
+  59   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    808    ----
+   CONSTANT SIZE    =     19    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     59       8
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

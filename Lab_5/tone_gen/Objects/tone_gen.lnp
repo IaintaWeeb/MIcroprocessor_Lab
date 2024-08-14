@@ -1,0 +1,3 @@
+".\Objects\tone_gen.obj" 
+TO ".\Objects\tone_gen" 
+PRINT(".\Listings\tone_gen.m51") RAMSIZE(256) 

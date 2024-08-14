@@ -1,0 +1,81 @@
+A51 MACRO ASSEMBLER  BUBBLE_SORT                                                          01/16/2023 13:53:59 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\bubble_sort.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE bubble_sort.asm SET(SMALL) DEBUG PRINT(.\Listings\bubble_sort.lst) OBJE
+                      CT(.\Objects\bubble_sort.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0H
+0000 020100            2     LJMP MAIN
+0100                   3     ORG 100H
+0100                   4     MAIN:
+0100 856070            5     MOV 70H,60H
+0103 856171            6     MOV 71H,61H
+0106 856272            7     MOV 72H,62H
+0109 856373            8     MOV 73H,63H
+010C 856474            9     MOV 74H,64H
+010F 856575           10     MOV 75H,65H
+0112 856676           11     MOV 76H,66H
+0115 856777           12     MOV 77H,67H
+0118 3130             13     CALL SORT
+011A 80FE             14     HERE: SJMP HERE
+0130                  15     ORG 130H
+                      16     
+                      17     
+0130                  18     SORT:
+0130 7F07             19             MOV R7, #7
+0132 7870             20             MOV R0, #70H
+0134 7971             21             MOV R1, #71H
+0136 C291             22             CLR P1.1
+0138                  23             loop:
+0138 E6               24                     MOV A, @R0
+0139 97               25                     SUBB A, @R1
+013A C292             26                     CLR P1.2
+013C 500A             27                     JNC SWP
+013E 08               28                     back:INC R0
+013F 09               29                     INC R1
+0140 3155             30                     CALL swap_c
+0142 DFF4             31                     DJNZ R7, loop
+0144 2091E9           32                     JB P1.1,SORT
+0147 22               33     RET
+                      34     
+0148                  35     SWP:
+0148 8702             36             MOV 02H, @R1
+014A 8603             37             MOV 03H, @R0
+014C A703             38             MOV @R1, 03H
+014E A602             39             MOV @R0, 02H
+0150 D292             40             SETB P1.2
+0152 02013E           41             lJMP back
+                      42     
+0155                  43     swap_c:
+0155 A292             44             MOV C, P1.2
+0157 7291             45             ORL C, P1.1
+0159 9291             46             MOV P1.1, C
+015B 22               47             RET
+                      48     
+                      49     END
+A51 MACRO ASSEMBLER  BUBBLE_SORT                                                          01/16/2023 13:53:59 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+BACK . . . . . . .  C ADDR   013EH   A   
+HERE . . . . . . .  C ADDR   011AH   A   
+LOOP . . . . . . .  C ADDR   0138H   A   
+MAIN . . . . . . .  C ADDR   0100H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+SORT . . . . . . .  C ADDR   0130H   A   
+SWAP_C . . . . . .  C ADDR   0155H   A   
+SWP. . . . . . . .  C ADDR   0148H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

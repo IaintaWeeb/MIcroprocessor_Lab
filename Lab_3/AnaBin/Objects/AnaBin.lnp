@@ -1,0 +1,3 @@
+".\Objects\AnaBin.obj" 
+TO ".\Objects\AnaBin" 
+PRINT(".\Listings\AnaBin.m51") RAMSIZE(256) 

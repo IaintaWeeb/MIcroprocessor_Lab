@@ -1,0 +1,3 @@
+".\Objects\AvgFilter.obj" 
+TO ".\Objects\AvgFilter" 
+PRINT(".\Listings\AvgFilter.m51") RAMSIZE(256) 

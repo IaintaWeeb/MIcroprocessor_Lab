@@ -1,0 +1,3 @@
+".\Objects\mod_addsub.obj" 
+TO ".\Objects\mod_addsub" 
+PRINT(".\Listings\mod_addsub.m51") RAMSIZE(256) 

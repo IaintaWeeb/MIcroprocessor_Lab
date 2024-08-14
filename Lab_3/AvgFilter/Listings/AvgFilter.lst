@@ -1,0 +1,72 @@
+A51 MACRO ASSEMBLER  AVGFILTER                                                            01/23/2023 13:23:18 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\AvgFilter.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE AvgFilter.asm SET(SMALL) DEBUG PRINT(.\Listings\AvgFilter.lst) OBJECT(.
+                      \Objects\AvgFilter.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0H
+0000 020100            2     LJMP MAIN
+0100                   3     ORG 100H
+0100                   4     MAIN:
+0100 3130              5             CALL FILT
+0102 80FE              6             HERE: SJMP HERE
+0130                   7             ORG 130H
+                       8             
+0130                   9             FILT:
+                      10             
+0130 C057             11                     PUSH 57H
+0132 C058             12                     PUSH 58H
+0134 C059             13                     PUSH 59H
+0136 755700           14                     MOV 57H,#0
+0139 755800           15                     MOV 58H,#0
+013C 755900           16                     MOV 59H,#0
+013F 7860             17                     MOV R0,#60H
+0141 7970             18                     MOV R1,#70H
+0143 7E08             19                     MOV R6,#8
+0145                  20                     loopo:
+0145 7F04             21                             MOV R7,#4
+0147 7400             22                             MOV A,#0
+0149                  23                                     loopi:
+0149 8602             24                                             MOV 02H,@R0
+014B 2A               25                                             ADD A, R2
+014C 18               26                                             DEC R0
+014D DFFA             27                                             DJNZ R7,loopi
+014F 75F004           28                             MOV B,#4
+0152 84               29                             DIV AB
+0153 F7               30                             MOV @R1,A
+0154 08               31                             INC R0
+0155 08               32                             INC R0
+0156 08               33                             INC R0
+0157 08               34                             INC R0
+0158 08               35                             INC R0
+0159 09               36                             INC R1
+015A DEE9             37                             DJNZ R6,loopo
+015C D059             38                     POP 59H
+015E D058             39                     POP 58H
+0160 D057             40                     POP 57H
+0162 22               41             RET
+                      42     END
+A51 MACRO ASSEMBLER  AVGFILTER                                                            01/23/2023 13:23:18 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+FILT . . . . . . .  C ADDR   0130H   A   
+HERE . . . . . . .  C ADDR   0102H   A   
+LOOPI. . . . . . .  C ADDR   0149H   A   
+LOOPO. . . . . . .  C ADDR   0145H   A   
+MAIN . . . . . . .  C ADDR   0100H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

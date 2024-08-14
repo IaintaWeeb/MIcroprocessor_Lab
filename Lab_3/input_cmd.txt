@@ -1,0 +1,4 @@
+E char I:60h = 11H, 2AH, 01H, 3FH, 18H, 1CH, 0EH, 06H
+E char I:60h = 00H, 09H, 0AH, 13H, 14H, 1DH, 1EH, 0FFH
+E char I:60h = 04H, 24H, 38H, 11H, 3AH, 2BH, 0EH, 69H
+E char I:60h = 56H, 1AH, 33H, 4DH, 46H, 02H, 4EH, 56H
